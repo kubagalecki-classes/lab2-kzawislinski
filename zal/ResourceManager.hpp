@@ -5,29 +5,42 @@
 class ResourceManager
 {
     public:
-    Resource* wsk;
-    ResourceManager ( ){wsk= new Resource; }
-    ResourceManager ( const ResourceManager& re):wsk(re.wsk) {wsk= new Resource{*re.wsk};}
-    ResourceManager& operator=(const ResourceManager& re){
-      if(wsk == re.wsk) return *this;
-      delete wsk;
-      wsk= new Resource{*re.wsk};
+    Resource* res;
+
+    ResourceManager ( )
+    {
+      res= new Resource; 
+    }
+    
+    ResourceManager ( const ResourceManager& kopia):res(kopia.res) 
+    {
+      res= new Resource{*kopia.res};
+    }
+    
+    ResourceManager& operator=(const ResourceManager& kopia)
+    {
+      if(res == kopia.res) return *this;
+      delete res;
+      res= new Resource{*kopia.res};
       return *this;
      
     }
-    ResourceManager(ResourceManager&& re){
-      wsk=re.wsk;
-      re.wsk=nullptr;
+
+    ResourceManager(ResourceManager&& kopia){
+      res=kopia.res;
+      kopia.res=nullptr;
       
     }
-    ResourceManager& operator=(ResourceManager&& re){
-      if(wsk==re.wsk) return *this;
-      delete wsk;
-      wsk= re.wsk;
-      re.wsk=nullptr;
+
+    ResourceManager& operator=(ResourceManager&& kopia){
+      if(res==kopia.res) return *this;
+      delete res;
+      res= kopia.res;
+      kopia.res=nullptr;
       return *this;
      
     }
-    double get() {return wsk->get();}
-    ~ResourceManager() { delete wsk; }
+    
+    double get() {return res->get();}
+    ~ResourceManager() { delete res; }
 };
