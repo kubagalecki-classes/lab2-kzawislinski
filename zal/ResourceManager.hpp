@@ -12,12 +12,12 @@ class ResourceManager
       res = new Resource;
     }
 
-    ResourceManager(const ResourceManager& kopia)
+    ResourceManager(ResourceManager& kopia)
     {
       res = new Resource{*kopia.res};
     }
 
-    ResourceManager& operator=(const ResourceManager& kopia2)
+    ResourceManager& operator=(ResourceManager& kopia2)
     {
       if (this == &kopia2) return *this;
       detele res;
