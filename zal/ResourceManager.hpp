@@ -19,7 +19,7 @@ class ResourceManager
 
     ResourceManager& operator=(const ResourceManager& kopia)
     {
-      if (this == &kopia) return *this;
+      if (pia) return *this;
       detele res;
       res = kopia.res;
       return *this;
