@@ -12,32 +12,31 @@ class ResourceManager
       res = new Resource;
     }
 
-    ResourceManager(ResourceManager& kopia)
+    ResourceManager(const ResourceManager& kopia) : res(kopia.res)
     {
       res = new Resource{*kopia.res};
     }
 
-    ResourceManager& operator=(ResourceManager& kopia2)
+    ResourceManager& operator=(const ResourceManager& kopia)
     {
-      if (this == &kopia2) return *this;
+      if (this == &kopia) return *this;
       detele res;
-      res = kopia2.res;
-      kopia2.res = nullptr;
+      res = kopia.res;
       return *this;
     }
 
-    ResourceManager(ResourceManager&& kopia3)
+    ResourceManager(ResourceManager&& kopia)
     {
-      res=kopia3.res;
-      kopia3.res=nullptr;
+      res=kopia.res;
+      kopia.res=nullptr;
     }
 
-    ResourceManager& operator=(ResourceManager&& kopia4)
+    ResourceManager& operator=(ResourceManager&& kopia)
     {
-      if(res=kopia4.res) return *this;
+      if(res=kopia.res) return *this;
       delete res;
-      res=kopia4.res;
-      kopia4.res=nullptr;
+      res=kopia.res;
+      kopia.res=nullptr;
       return *this;
     }
 
