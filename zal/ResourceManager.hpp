@@ -26,7 +26,7 @@ class ResourceManager
       else
       {
         delete res;
-        *res= *kopia.res;
+        res= new Resource{*kopia.res};
         return *this;
       }
      
