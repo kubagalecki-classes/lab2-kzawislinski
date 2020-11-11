@@ -19,10 +19,16 @@ class ResourceManager
 
     ResourceManager& operator=(const ResourceManager& kopia)
     {
-      if (kopia.res == res) return *this;
-      detele res;
-      res = new Resource{*kopia.res};
-      return *this;
+      if (kopia.res == res) 
+      {
+        return *this;
+      }
+      else
+      {
+        detele res;
+        res = new Resource{*kopia.res};
+        return *this;
+      }
     }
 
     ResourceManager(ResourceManager&& kopia)
@@ -33,11 +39,17 @@ class ResourceManager
 
     ResourceManager& operator=(ResourceManager&& kopia)
     {
-      if(res==kopia.res) return *this;
-      delete res;
-      res=kopia.res;
-      kopia.res=nullptr;
-      return *this;
+      if(res==kopia.res) 
+      {
+        return *this;
+      }
+      else
+      {
+        delete res;
+        res=kopia.res;
+        kopia.res=nullptr;
+        return *this;
+      }
     }
 
     double get(){return res->get();}
